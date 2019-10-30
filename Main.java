@@ -1,4 +1,5 @@
 package labsession3;
+package assignment3;
 
 public class Main {
     public static void main(String args[]){
@@ -14,5 +15,9 @@ public class Main {
         PhanSo tong = fc.addPhanSo(fc2);
         char a[] = {'a','b','c','d','e'};
 
+        Student sv1 = new Student();
+        sv1.inputInfo();
+        sv1.showInfo();
+        sv1.xetHocbong();
     }
 }
