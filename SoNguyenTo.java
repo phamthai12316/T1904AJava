@@ -1,37 +1,39 @@
-package session2;
-
-import java.util.Scanner;
-
+package jv2.labsession4;
 
 public class SoNguyenTo {
-    public int a = 2;
+    public int snt = 2;
+    public int snt2;
 
-    public boolean isSoNguyenTo(int x){
-        for (int i=2;i<=x/2;i++){
-            if(x%i==0){
-                return false;
+
+    public synchronized void soNguyenToTiepTheo(){
+        for (int i = snt+1;true;i++) {
+            if (checkSNT(i)){
+                snt = i;
+                notify();
+                System.out.println("Next: "+snt);
+                return;
             }
+        }
+    }
+
+    public boolean checkSNT(int n){
+        if(n<=1) return false;
+        if (n<=3) return true;
+        for (int i = 2; i <= n/2; i++) {
+            if(n%i==0) return false;
         }
         return true;
     }
 
-    public int timSoNguyenToTiepTheo(){
-        for (int i=a+1;true;i++){
-            if(isSoNguyenTo(i)){
-                return i;
+    public synchronized void binhphuong(){
+        if(snt2==snt){
+            try{
+                wait();
             }
+            catch (Exception e){}
         }
-    }
 
-    public int getA() {
-        return a;
-    }
-
-    public void setA(int a) {
-        if(isSoNguyenTo(a)){
-            this.a = a;
-            return;
-        }
-        System.out.print("day khong phai so nguyen to");
+        System.out.println("Square: "+snt*snt);
+        snt2 = snt;
     }
 }
